@@ -19,7 +19,9 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
             self.end_headers()
-            open(os.environ['SHUTDOWN_FILE_PATH'], 'w').close()
+            f = open(os.environ['SHUTDOWN_FILE_PATH'], 'w')
+            f.write("true")
+            f.close()
             self.wfile.write(bytes("OK", "utf-8"))
          
 
